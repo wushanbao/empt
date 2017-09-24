@@ -101,7 +101,8 @@
           this.$nextTick(() => {
             new BScroll(this.$refs.nav, {
               click: true ,
-              scrollX:true
+              scrollX:true,
+              scrollY:false
             })
           })
         }

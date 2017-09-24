@@ -13,17 +13,20 @@
           </div>
           <div class="bg-footer">
             <ul class="footer-item">
-              <li class="first-item"><a href="">普通登陆</a><i></i></li>
-              <li class="second-item"><a href="">手机登陆</a><i></i></li>
+              <li class="first-item" @click="login"><a href="javascript:;">普通登陆</a>
+                <i :class="{triangle:have}"></i>
+              </li>
+              <li class="second-item" @click="logintodo"><a href="javascript:;">手机登陆</a>
+                <i :class="{triangle:!have}"></i>
+              </li>
             </ul>
           </div>
       </div>
-      <div class="login-content" v-show="isShow">
+      <div class="login-content "  v-show="isShow">
        <ul class="content-wrapper">
          <li class="item-content">
            <span></span>
            <input type="text" placeholder="手机号/邮箱/用户名">
-
          </li>
          <li class="item-psd">
            <span></span>
@@ -31,8 +34,8 @@
          </li>
        </ul>
      </div>
-      <div class="login-content" v-show="!isShow">
-       <ul class="content-wrapper">
+      <div class="login-content " v-show="!isShow" >
+       <ul class="content-wrapper" >
          <li class="item-content">
            <span class="mobile-logo"></span>
            <input type="text" placeholder="已注册的手机号">
@@ -40,13 +43,12 @@
          <li class="item-psd">
            <span></span>
            <input type="text" placeholder="请输入图片内容">
-           <div id="v_container" style="width: 100px;height: 50px;float: right;margin-top: 10px">
-           </div>
-           <!--<input type="text" id="code_input" value="" /><button id="my_button">验证</button>-->
+           <!--<div id="v_container" style="width: 100px;height: 50px;float: right;margin-top: 10px">-->
+           <!--</div>-->
          </li>
          <li class="item-psd">
            <span></span>
-           <input type="text" placeholder="动态密码">
+           <input type="text" class="dongtai" placeholder="动态密码">
            <div class="get-psd" @click="getCode">
              获取动态密码
            </div>
@@ -63,41 +65,64 @@
          登&nbsp;&nbsp;&nbsp;录
        </a>
      </div>
+      <div class="go-download"></div>
       <div class="ft-text">
        合作网站登录
      </div>
+
       <div class="ft-logo">
        <img src="./login_ico4.png" alt="" width="57" height="57">
        <img src="./login_ico2.png" alt="" width="57" height="57">
      </div>
    </header>
 
-   <div class="bgfff">
-
-        <!--<form action=""></form>-->
-     <div clas="first-input">
-       <img src="" alt="">
-       <input type="text"/>
-     </div>
-     <div clas="second-input">
-       <img src="" alt="">
-       <input type="text" />
-     </div>
-
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
    </div>
  </div>
 </template>
 <script>
-  export default{}
+  export default{
+    data(){
+     return{
+       isShow:true,
+       have:true
+
+     }
+    },
+
+    methods:{
+        login(){
+          if(!this.isShow){
+            this.isShow = !this.isShow
+            this.have = !this.have
+
+          }
+
+        },
+        logintodo(){
+          if(!this.isShow){
+            return
+
+          }else{
+            this.isShow = !this.isShow
+            this.have=!this.have
+
+
+          }
+
+
+        }
+
+
+    }
+  }
 
 </script>
 <style lang="stylus"  type="text/stylus" rel="stylesheet/stylus">
  /*!* <!--登录*!头部-->*/
+  /*.wrap*/
+    /*height 667px*/
+    /*position absolute*/
+    /*z-index 200*/
     .login-bg
       background-image url("./2ac7b0a4f0ab1e4a63819e0668d1cb39.png")
       background-size 100% 100%
@@ -136,6 +161,7 @@
         .footer-item
           width 100%
           height 44px
+          background rgba(255,255,255,.3)
           li
             float left
             width 50%
@@ -147,7 +173,7 @@
               font-size 15px
               color white
               display block
-            i
+            .triangle
               display block
               width: 0;
               height: 0;
@@ -161,6 +187,7 @@
               margin: auto;
 
 
+//     手机和普通登录
     .login-content
       width 95%
       .item-content
@@ -187,6 +214,7 @@
           margin-left 25px
           border none //非激活状态跟不显示
           outline medium //鼠标移到输入框不显示
+
       .item-psd
         border-bottom 1px solid #E9E9E9
         height 50px
@@ -221,10 +249,14 @@
           margin-top 10px
           text-align center
           line-height 30px
+
+      /*忘记密码*/
     .forget-psd
       float right
       margin 10px 10px 0 0
       font-size 15px
+
+      /*登录按钮*/
     .login-btn
       width 90%
       height 40px

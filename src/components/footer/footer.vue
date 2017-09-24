@@ -4,7 +4,7 @@
     <div class="tab-footer">
       <div class="tab-item">
           <router-link to="/home" >
-            <img src="./main_cattab_1_sel.png" width="42" height="40">
+            <img src="./shouye.png" width="42" height="40">
            </router-link>
       </div>
       <div class="tab-item">

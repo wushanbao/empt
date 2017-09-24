@@ -133,13 +133,13 @@
             <span style="color: red;font-size: 16px">￥19.90</span>
             <p>省￥7.10</p>
           </li>
-          <li class="item">
-            <a href="javascript:;">
-              <img data-src="https://img1.epetbar.com/2016-03/29/10/a0312ea07b2ce3454c723a462e7634e0.jpg@!300w-b" class="image" data-reactid=".0.1.1.0.3.0.1.0.0.2.0.0.0.0" src="https://img1.epetbar.com/2016-03/29/10/a0312ea07b2ce3454c723a462e7634e0.jpg@!300w-b">
-            </a>
-            <span style="color: red;font-size: 16px">￥19.90</span>
-            <p>省￥7.10</p>
-          </li>
+          <!--<li class="item">-->
+            <!--<a href="javascript:;">-->
+              <!--<img data-src="https://img1.epetbar.com/2016-03/29/10/a0312ea07b2ce3454c723a462e7634e0.jpg@!300w-b" class="image" data-reactid=".0.1.1.0.3.0.1.0.0.2.0.0.0.0" src="https://img1.epetbar.com/2016-03/29/10/a0312ea07b2ce3454c723a462e7634e0.jpg@!300w-b">-->
+            <!--</a>-->
+            <!--<span style="color: red;font-size: 16px">￥19.90</span>-->
+            <!--<p>省￥7.10</p>-->
+          <!--</li>-->
         </ul>
       </div>
     </div>
@@ -470,9 +470,10 @@
               width 100%
               height 100%
         .surprise-item
-          white-space nowrap
+          /*white-space nowrap*/
           margin 10px 0
           .item-content
+            /*white-space nowrap*/
             width 100%
             overflow hidden
             .item
@@ -483,7 +484,7 @@
               font-size 12px
               text-align center
             img
-              display block
+              display inline-block
               float left
               width 100%
               margin 0 10px

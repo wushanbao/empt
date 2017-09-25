@@ -5,7 +5,9 @@
           <div class="bg-header">
             <a href="" class="back"></a>
             <div class="zhuche">
-              <a href="https://wap.epet.com/register.html" class="text">注册</a>
+              <router-link to="/register">
+                     <a href="" class="text">注册</a>
+              </router-link>
             </div>
           </div>
           <div class= "bg-mid">
@@ -49,7 +51,7 @@
          <li class="item-psd">
            <span></span>
            <input type="text" class="dongtai" placeholder="动态密码">
-           <div class="get-psd" @click="getCode">
+           <div class="get-psd" >
              获取动态密码
            </div>
          </li>
@@ -119,10 +121,13 @@
 </script>
 <style lang="stylus"  type="text/stylus" rel="stylesheet/stylus">
  /*!* <!--登录*!头部-->*/
-  /*.wrap*/
-    /*height 667px*/
-    /*position absolute*/
-    /*z-index 200*/
+  .wrap
+    height 667px
+    position absolute
+    z-index 200
+    width 100%
+    top 0
+    background white
     .login-bg
       background-image url("./2ac7b0a4f0ab1e4a63819e0668d1cb39.png")
       background-size 100% 100%
@@ -270,7 +275,7 @@
     .ft-text
       width 100%
       text-align center
-      margin-top 48px
+      margin-top 103px
       color #d7d7d7
     .ft-logo
       img

@@ -15,7 +15,7 @@ import home from '../components/home/home.vue'
 import classify from '../components/classify/classify.vue'
 import shopcard from '../components/shopcard/shopcard.vue'
 import mypet from '../components/mypet/mypet.vue'
-
+import register from '../components/register/register.vue'
 
 Vue.use(Router)
 
@@ -67,6 +67,10 @@ export default new Router({
     {
       path: '/mypet',
       component: mypet
+    },
+    {
+      path:'/register',
+      component:register
     },
     {
       path:'/',

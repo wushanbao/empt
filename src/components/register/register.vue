@@ -1,14 +1,14 @@
 <template>
   <div class="register-wrap">
     <div class="register">
-      <form action="" method="get">
+      <form action="" method="">
         <ul class="inp-list" >
           <li class="inp-item" >
             <span class="icon-tel"></span>
-            <input type="text" placeholder="请输入手机号码" class="text-tel" v-model="tel"  >
+            <input type="text" placeholder="请输入手机号码" class="text-tel" @input="changeColor" v-model="tel"  >
           </li>
           <div class="res-btn"  v-show="isTrue">
-            <mt-button type="primary"   class="nextStep"   @click="changInputt">下一步</mt-button>
+            <mt-button type="primary"    :class='[styles]' @click="changInputt" >下一步</mt-button>
             <!--<Button class="nextStep"  ref="resBtn"   @click="changInputt">下一步</Button>-->
           </div>
           <li class="inp-item" v-show="isShow">
@@ -34,7 +34,7 @@
             <input type="password" placeholder="请确认密码" class="text-tel" v-model="rPassword" >
           </li>
           <div class="res-btn"  v-show="isShow">
-            <mt-button type="primary"   class="nextStep"  @click="nextClick">点击注册</mt-button>
+            <mt-button type="primary"   class="registerButton"  @click="nextClick">点击注册</mt-button>
             <!--<Button class="nextStep"  ref="resBtn"   @click="changInputt">下一步</Button>-->
           </div>
         </ul>
@@ -59,9 +59,10 @@
         rPassword: '',
         isShow: false,
         isTrue:true,
+        styles:"nextStep"
       }
     },
-    created(){
+    mounted(){
       this.$nextTick(()=>{
         this._foundAuth()
       })
@@ -79,6 +80,14 @@
         }
 
       },
+
+      changeColor(){
+       if(this.tel){
+         this.styles = "changed"
+       }else{
+         this.styles =  'nextStep'
+       }
+     },
       _foundAuth(){
         this.verifyCode = new GVerify({
           id: "v_container", //容器Id
@@ -87,17 +96,38 @@
       },
 
     nextClick (){
+
        let username = this.username.trim()
        let password = this.password.trim()
        let rPassword = this.rPassword.trim()
        let url = `http://newsapi.gugujiankong.com/Handler.ashx?action=register&r_userName=${username}&r_password=${password}&r_confirmPassword=${rPassword}`
+
       if(!this.verifyCode.validate(this.authText)){
         alert("请正确输入图片验证码！")
         return
       }else if (!this.inputCode === this.resCode){
         alert("短信验证码不正确！")
         return
-      }else if(password === rPassword){
+      }else if(
+        (/^[\u4e00-\u9fa5a-zA-Z0-9_]+$/).test(this.username)
+      ){
+
+
+      }else{
+          alert("昵称已存在或格式错误")
+        return
+      }
+//   密码格式验证  可以不写
+//      if ((/^[a-zA-Z\d_]{8,}$/).test(this.password)){
+//
+//
+//      }else{
+//        alert("密码格式错误")
+//        return
+//      }
+
+//      如果两次密码一样 则发送请求
+      if(password === rPassword){
         axios.get(url)
           .then(res => {
             if(res.data){
@@ -105,10 +135,15 @@
               this.$router.push('/myepet')
             }
           })
+      }else{
+
+        MessageBox("两次密码不一致")
       }
 
 
-    }
+    },
+
+
 
     }
 
@@ -213,14 +248,24 @@ body
         /*text-align center*/
         /*background deepskyblue*/
         /*vertical-align middle*/
-        width 220px
-        height 42px
+        border-radius 30px
+        width 300px
+        height 30px
+        background-color gainsboro
+      .registerButton
+        border-radius 30px
+        width 300px
+        height 30px
+        background-color deepskyblue
+      .changed
+        border-radius 30px
+        width 300px
+        height 30px
+        background-color #ff6c22
       .ivu-btn
         font-size 1.2em
         width 80%
         margin 0 10%
         padding 0.5em 0
-        &.ivu-btn-warning[disabled]
-          background-color #d7d7d7
-          color #fff
+
 </style>
